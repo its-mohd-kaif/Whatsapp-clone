@@ -1,0 +1,22 @@
+.landing__stripe1,.contacts__stripe1 {
+    background: #009788;
+    height: 250px;
+  }
+  .landing__stripe2 {
+    margin-top: -11em;
+  }
+  .landing__card {
+    width: 28em;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    padding: 0.5em;
+  }
+  .loginBtn {
+    background-image: linear-gradient(#64b953, #1e9148);
+    border: none !important;
+  }
+  .loginBtn:hover {
+    background-image: linear-gradient(#4aaf36, #0b923d);
+  }
+  

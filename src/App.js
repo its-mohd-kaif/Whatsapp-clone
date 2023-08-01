@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Login from "./components/form/Login";
+import Signup from "./components/form/Signup";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ContactList from "./components/main/ContactList";
+import Error from "./components/error/Error";
+import { ProtectedRoute } from "./components/protected/Protected";
+import ChatSection from "./components/main/ChatSection";
 function App() {
+  let router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Login />,
+      errorElement: <Error />,
+    },
+    {
+      path: "/signup",
+      element: <Signup />,
+      errorElement: <Error />,
+    },
+    {
+      path: "/contacts",
+      element: (
+        <ProtectedRoute>
+          <ContactList />
+        </ProtectedRoute>
+      ),
+      errorElement: <Error />,
+      children: [
+        {
+          path: "/contacts/chat",
+          element: (
+            <ProtectedRoute>
+              <ChatSection />
+            </ProtectedRoute>
+          ),
+          errorElement: <Error />,
+        },
+      ],
+    },
+  ]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <RouterProvider router={router} />
     </div>
   );
 }
